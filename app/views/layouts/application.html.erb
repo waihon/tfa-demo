@@ -16,8 +16,11 @@
   <body>
     <%= render 'layouts/header' %>
 
-    <%= yield %>
+    <div class="container-fluid">
+      <br />
+      <%= yield %>
 
-    <%= render 'layouts/footer' %>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
