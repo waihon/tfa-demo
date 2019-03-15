@@ -12,5 +12,9 @@
  *
  */
 
+// Do not use *= require and *= require_tree in Sass or your other stylesheets will not be able to
+// access the Bootstrap mixins and variables. Use @import to import Sass files.
+@import "form";
+
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
