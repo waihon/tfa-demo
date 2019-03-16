@@ -5,6 +5,9 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     format: /\A\S+@\S+\z/,
                     uniqueness: { case_sensitive: false }
+  validates :username, presence: true,
+                       format: /\A[a-zA-Z0-9]+\z/,
+                       uniqueness: { case_sensitive: false }
 
   def self.authenticate(email, password)
     user = User.find_by(email: email)

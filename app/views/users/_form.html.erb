@@ -14,6 +14,12 @@
     <%= f.text_field :name, size: 40, autofocus: true, class: "form-control" %>
   </div>
   <div class="form-group">
+    <%= f.label :username, class: "required" %><br />
+    <%= f.text_field :username, size: 40,
+      placeholder: "Alphanumeric characters only!",
+      class: "form-control" %>
+  </div>
+  <div class="form-group">
     <%= f.label :email, class: "required"  %><br />
     <%= f.email_field :email, size: 40, class: "form-control" %>
   </div>
