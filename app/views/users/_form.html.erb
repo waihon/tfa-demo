@@ -4,6 +4,8 @@
 <% else %>
   <% password_class = "optional" %>
   <% button_text = "Update Account" %>
+  <% password_tip = "Leave blank if you don't want to change it." %>
+  <% password_confirmation_tip = "Confirm if you're changing it." %>
 <% end %>
 
 <%= form_for(@user) do |f| %>
@@ -26,12 +28,20 @@
   <div class="form-group">
     <%= f.label :password, class: "#{password_class}"  %><br />
     <%= f.password_field :password, size: 40, class: "form-control" %>
+    <% if password_tip.present? %>
+      <p><small><i><%= password_tip %></i></small></p>
+    <% end %>
   </div>
   <div class="form-group">
     <%= f.label :password_confirmation, 'Confirm Password', class: "#{password_class}" %><br />
     <%= f.password_field :password_confirmation, size: 40, class: "form-control" %>
+    <% if password_confirmation_tip.present? %>
+      <p><small><i><%= password_confirmation_tip %></i></small></p>
+    <% end %>
   </div>
   <div class="form-group">
     <%= f.submit "#{button_text}", class: "btn btn-primary" %>
+    or
+    <%= link_to "Cancel", request.referer.present? ? request.referer : root_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
