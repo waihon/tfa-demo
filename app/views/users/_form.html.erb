@@ -1,0 +1,31 @@
+<% if @user.new_record? %>
+  <% password_class = "required" %>
+  <% button_text = "Create Account" %>
+<% else %>
+  <% password_class = "optional" %>
+  <% button_text = "Edit Account" %>
+<% end %>
+
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/errors', object: @user %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "required" %><br />
+    <%= f.text_field :name, size: 40, autofocus: true, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, class: "required"  %><br />
+    <%= f.email_field :email, size: 40, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, class: "#{password_class}"  %><br />
+    <%= f.password_field :password, size: 40, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, 'Confirm Password', class: "#{password_class}" %><br />
+    <%= f.password_field :password_confirmation, size: 40, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "#{button_text}", class: "btn btn-primary" %>
+  </div>
+<% end %>

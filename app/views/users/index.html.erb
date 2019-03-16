@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>Users</h3>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= user.email %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

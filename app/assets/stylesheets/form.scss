@@ -1,0 +1,8 @@
+label.required:after {
+  content: " *";
+  color: red;
+}
+
+label.optional:after {
+  content: "";
+}
