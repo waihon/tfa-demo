@@ -10,5 +10,6 @@ describe "Signing in" do
 
     expect(page).to have_field("Email")
     expect(page).to have_field("Password")
+    expect(page).to have_link("Sign up!")
   end
 end
