@@ -9,8 +9,8 @@ class User < ApplicationRecord
                        format: /\A[a-zA-Z0-9]+\z/,
                        uniqueness: { case_sensitive: false }
 
-  def self.authenticate(email, password)
-    user = User.find_by(email: email)
+  def self.authenticate(email_or_username, password)
+    user = User.find_by(email: email_or_username) || User.find_by(username: email_or_username)
     user && user.authenticate(password)
   end
 
