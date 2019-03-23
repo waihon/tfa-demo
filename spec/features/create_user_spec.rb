@@ -20,6 +20,10 @@ describe "Creating a new user" do
 
     expect(page).to have_text("Example User")
     expect(page).to have_text("Thanks for signing up!")
+
+    expect(page).to have_link("Example User")
+    expect(page).not_to have_link("Sign Up")
+    expect(page).not_to have_link("Sign In")
   end
 
   it "does not save the user if it's invalid" do
@@ -30,5 +34,8 @@ describe "Creating a new user" do
     }.not_to change(User, :count)
 
     expect(page).to have_text("error")
+
+    expect(page).to have_link("Sign Up")
+    expect(page).to have_link("Sign In")
   end
 end
