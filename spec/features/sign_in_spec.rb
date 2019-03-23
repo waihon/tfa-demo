@@ -62,6 +62,7 @@ describe "Signing in" do
     expect(page).to have_text("Welcome back, #{user.name}!")
 
     expect(page).to have_link(user.name)
+    expect(page).to have_link("Account Settings")
     expect(page).not_to have_link("Sign Up")
     expect(page).not_to have_link("Sign In")
   end
@@ -82,6 +83,7 @@ describe "Signing in" do
     expect(page).to have_text("Welcome back, #{user.name}!")
 
     expect(page).to have_link(user.name)
+    expect(page).to have_link("Account Settings")
     expect(page).not_to have_link("Sign Up")
     expect(page).not_to have_link("Sign In")
   end
@@ -103,6 +105,7 @@ describe "Signing in" do
     expect(page).to have_text("Invalid email/username/password combination!")
 
     expect(page).not_to have_link(user.name)
+    expect(page).not_to have_link("Account Settings")
     expect(page).to have_link("Sign Up")
     expect(page).to have_link("Sign In")
   end
@@ -124,6 +127,7 @@ describe "Signing in" do
     expect(page).to have_text("Invalid email/username/password combination!")
 
     expect(page).not_to have_link(user.name)
+    expect(page).not_to have_link("Account Settings")
     expect(page).to have_link("Sign Up")
     expect(page).to have_link("Sign In")
   end
@@ -145,6 +149,7 @@ describe "Signing in" do
     expect(page).to have_text("Invalid email/username/password combination!")
 
     expect(page).not_to have_link(user.name)
+    expect(page).not_to have_link("Account Settings")
     expect(page).to have_link("Sign Up")
     expect(page).to have_link("Sign In")
   end
