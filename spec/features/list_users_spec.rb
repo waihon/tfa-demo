@@ -12,6 +12,8 @@ describe "Viewing the list of users" do
                                          username: "curlymod",
                                          email: "curly@example.com"))
 
+    sign_in(user1)
+
     visit users_url
 
     (1..3).each do |i|
