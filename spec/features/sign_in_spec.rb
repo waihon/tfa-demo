@@ -49,13 +49,7 @@ describe "Signing in" do
   it "signs in the user if the email/password combination is valid" do
     user = User.create!(user_attributes)
 
-    visit root_path
-    click_link "Sign In"
-
-    fill_in "Email or Username", with: user.email
-    fill_in "Password", with: user.password
-
-    click_button "Sign In"
+    sign_in(user)
 
     expect(current_path).to eq(user_path(user))
 
@@ -63,6 +57,7 @@ describe "Signing in" do
 
     expect(page).to have_link(user.name)
     expect(page).to have_link("Account Settings")
+    expect(page).to have_link("Sign Out")
     expect(page).not_to have_link("Sign Up")
     expect(page).not_to have_link("Sign In")
   end
@@ -70,13 +65,7 @@ describe "Signing in" do
   it "signs in the user if the username/password combination is valid" do
     user = User.create!(user_attributes)
 
-    visit root_path
-    click_link "Sign In"
-
-    fill_in "Email or Username", with: user.username
-    fill_in "Password", with: user.password
-
-    click_button "Sign In"
+    sign_in(user, with_username: true)
 
     expect(current_path).to eq(user_path(user))
 
@@ -84,6 +73,7 @@ describe "Signing in" do
 
     expect(page).to have_link(user.name)
     expect(page).to have_link("Account Settings")
+    expect(page).to have_link("Sign Out")
     expect(page).not_to have_link("Sign Up")
     expect(page).not_to have_link("Sign In")
   end
@@ -106,6 +96,7 @@ describe "Signing in" do
 
     expect(page).not_to have_link(user.name)
     expect(page).not_to have_link("Account Settings")
+    expect(page).not_to have_link("Sign Out")
     expect(page).to have_link("Sign Up")
     expect(page).to have_link("Sign In")
   end
@@ -128,6 +119,7 @@ describe "Signing in" do
 
     expect(page).not_to have_link(user.name)
     expect(page).not_to have_link("Account Settings")
+    expect(page).not_to have_link("Sign Out")
     expect(page).to have_link("Sign Up")
     expect(page).to have_link("Sign In")
   end
@@ -150,6 +142,7 @@ describe "Signing in" do
 
     expect(page).not_to have_link(user.name)
     expect(page).not_to have_link("Account Settings")
+    expect(page).not_to have_link("Sign Out")
     expect(page).to have_link("Sign Up")
     expect(page).to have_link("Sign In")
   end
