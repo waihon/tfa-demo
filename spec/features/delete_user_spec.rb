@@ -4,11 +4,10 @@ describe "Deleting a user" do
   it "destroys the user and redirects to the home page" do
     user = User.create!(user_attributes)
 
-    visit users_path
-    expect(page).to have_text(user.name) 
+    sign_in(user)
+    expect(current_path).to eq(user_path(user))
 
-    visit user_path(user)
-    click_link "Delete Account"
+    click_on "Delete Account"
     expect(current_path).to eq(root_path)
     expect(page).to have_text("Account successfully deleted!")
 
@@ -20,9 +19,9 @@ describe "Deleting a user" do
     user = User.create!(user_attributes)
 
     sign_in(user)
+    expect(current_path).to eq(user_path(user))
 
     click_on "Delete Account"
-
     expect(current_path).to eq(root_path)
     expect(page).to have_link("Sign Up")
     expect(page).to have_link("Sign In")
