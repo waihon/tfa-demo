@@ -45,4 +45,36 @@ describe UsersController do
       expect(response).to redirect_to(signin_url)
     end
   end
+
+  context "when signed in as the wrong user" do
+    before do
+      @wrong_user = User.create!(user_attributes(name: "Wrong User",
+                                                 username: "wronguser",
+                                                 email: "wronguser@example.com"))
+      session[:user_id] = @wrong_user.id
+    end
+
+    it "cannot edit another user" do
+      get :edit, params: { id: @user }
+
+      expect(response).to redirect_to(root_url)
+    end
+
+    it "cannot update another user" do
+      patch :update, params: { id: @user.id, user: {
+          name: @user.name,
+          username: @user.username,
+          email: @user.email
+        }
+      }
+
+      expect(response).to redirect_to(root_url)
+    end
+
+    it "cannot destroy another user" do
+      delete :destroy, params: { id: @user }
+
+      expect(response).to redirect_to(root_url)
+    end
+  end
 end
