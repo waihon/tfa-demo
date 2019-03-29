@@ -68,3 +68,6 @@ gem 'jquery-rails'
 
 # Net/HTTP gems
 gem 'httparty', '0.15.5'
+
+# Set and authenticate against one time passwords (Two-Factor Authentication)
+gem 'active_model_otp', :git => 'https://github.com/heapsource/active_model_otp.git'
