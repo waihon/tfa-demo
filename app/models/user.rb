@@ -26,4 +26,16 @@ class User < ApplicationRecord
   def update_otp_secret_key!
     update_attribute(:otp_secret_key, ROTP::Base32.random_base32)
   end
+
+  def prepare_tfa
+    update_otp_secret_key
+  end
+
+  def enable_tfa
+    update_attribute(:tfa_enabled, true)
+  end
+
+  def reset_tfa
+    update_attributes(otp_secret_key: nil, tfa_enabled: false)
+  end
 end
