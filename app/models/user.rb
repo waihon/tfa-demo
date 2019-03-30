@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_one_time_password
 
   validates :name, presence: true
   validates :email, presence: true,
@@ -16,5 +17,13 @@ class User < ApplicationRecord
 
   def gravatar_id
     Digest::MD5.hexdigest(email.downcase)
+  end
+
+  def update_otp_secret_key
+    update_otp_secret_key! if otp_secret_key.blank?
+  end
+
+  def update_otp_secret_key!
+    update_attribute(:otp_secret_key, ROTP::Base32.random_base32)
   end
 end
