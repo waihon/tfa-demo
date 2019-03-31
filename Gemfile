@@ -58,9 +58,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Set and authenticate against one time passwords (Two-Factor Authentication)
-gem 'active_model_otp', :git => 'https://github.com/heapsource/active_model_otp.git'
-
 # Bootstrap 4
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
