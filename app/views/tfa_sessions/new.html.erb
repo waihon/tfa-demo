@@ -1,0 +1,17 @@
+<div class="container">
+  <header>
+    <h3>Two Factor Authentication<h3>
+  </header>
+
+  <%= form_tag(user_tfa_session_path(@user)) do %>
+    <fieldset>
+      <div class="form-group">
+        <%= label_tag :verification_code, "Verification Code", class: "required" %>
+        <%= text_field_tag :verification_code, nil, size: 40, autofocus: true, required: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= submit_tag "Verify Code", class: "btn btn-primary" %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
