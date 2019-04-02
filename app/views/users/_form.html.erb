@@ -1,3 +1,5 @@
+<script src="https://www.google.com/recaptcha/api.js?render=explicit&onload=recaptchaCallback"></script>
+
 <% if @user.new_record? %>
   <% password_class = "required" %>
   <% button_text = "Create Account" %>
@@ -39,9 +41,22 @@
       <p><small><i><%= password_confirmation_tip %></i></small></p>
     <% end %>
   </div>
+  <% if @user.new_record? %>
+    <div class="form-group">
+      <div id="recaptcha"></div>
+    </div>
+  <% end %>
   <div class="form-group">
     <%= f.submit "#{button_text}", class: "btn btn-primary" %>
     or
     <%= link_to "Cancel", request.referer.present? ? request.referer : root_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  var recaptchaCallback = function() {
+    var captchaWidgetId = grecaptcha.render( 'recaptcha', {
+      'sitekey' : '6Lf-UZsUAAAAAOTK1Wl4hy5ssiL_YaYmlrGzhpaz'
+    });
+  };
+</script>

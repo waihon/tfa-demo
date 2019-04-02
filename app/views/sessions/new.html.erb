@@ -1,3 +1,5 @@
+<script src="https://www.google.com/recaptcha/api.js?render=explicit&onload=recaptchaCallback"></script>
+
 <div class="container">
   <header>
     <h3>Sign In</h3>
@@ -14,6 +16,9 @@
         <%= password_field_tag :password, nil, size: 40, required: true, class: "form-control" %>
       </div>
       <div class="form-group">
+        <div id="recaptcha"></div>
+      </div>
+      <div class="form-group">
         <%= submit_tag "Sign In", class: "btn btn-primary" %>
       </div>
     </fieldset>
@@ -22,3 +27,11 @@
     No account yet? <%= link_to "Sign up!", signup_path %>
   </p>
 </div>
+
+<script type="text/javascript">
+  var recaptchaCallback = function() {
+    var captchaWidgetId = grecaptcha.render( 'recaptcha', {
+      'sitekey' : '6Lf-UZsUAAAAAOTK1Wl4hy5ssiL_YaYmlrGzhpaz'
+    });
+  };
+</script>

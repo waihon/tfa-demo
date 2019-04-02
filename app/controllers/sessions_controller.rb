@@ -4,10 +4,15 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.authenticate(params[:email_or_username], params[:password])
-      session[:user_id] = user.id
-      flash[:notice] = "Welcome back, #{user.name}!"
-      redirect_to(session[:intended_url] || user)
-      session[:intended_url] = nil
+      if validate_recaptcha
+        session[:user_id] = user.id
+        flash[:notice] = "Welcome back, #{user.name}!"
+        redirect_to(session[:intended_url] || user)
+        session[:intended_url] = nil
+      else
+        flash.now[:alert] = "Please complete the reCAPTCHA verification."
+        render :new
+      end
     else
       flash.now[:alert] = "Invalid email/username/password combination!"
       render :new
