@@ -116,7 +116,7 @@ describe "Force Update OTP Secret Key" do
     it "will update the secret key" do
       existing_secret_key = @user.otp_secret_key
       expect(existing_secret_key).to be_nil
-      @user.update_otp_secret_key!
+      @user.update_otp_secret_key
       expect(@user.otp_secret_key).not_to be_nil
     end
   end

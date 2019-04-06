@@ -23,12 +23,12 @@ describe "Viewing a user's profile page" do
       @user.update_attribute(:tfa_enabled, true)
     end
 
-    it "doesn't show Enable Two Factor Authentication" do
+    it "doesn't show Enable Two-Factor Authentication" do
       sign_in(@user)
 
       visit user_path(@user)
 
-      expect(page).not_to have_link("Enable Two Factor Authentication")
+      expect(page).not_to have_link("Enable Two-Factor Authentication")
     end
   end
 
@@ -37,12 +37,12 @@ describe "Viewing a user's profile page" do
       @user.update_attribute(:tfa_enabled, false)
     end
 
-    it "shows Enable Two Factor Authentication" do
+    it "shows Enable Two-Factor Authentication" do
       sign_in(@user)
 
       visit user_path(@user)
 
-      expect(page).to have_link("Enable Two Factor Authentication")
+      expect(page).to have_link("Enable Two-Factor Authentication")
     end
   end
 end

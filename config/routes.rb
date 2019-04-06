@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/about' => "pages#about"
 
   resources :users do
-    resource :tfa, only: [:new, :create]
+    resource :tfa, only: [:new, :create, :show]
     resource :tfa_session, only: [:new, :create]
   end
 

@@ -11,7 +11,7 @@ describe "Enabling TFA" do
 
     expect(current_path).to eq(user_path(@user))
 
-    click_on "Enable Two Factor Authentication"
+    click_on "Enable Two-Factor Authentication"
 
     expect(current_path).to eq(new_user_tfa_path(@user))
 
@@ -29,8 +29,12 @@ describe "Enabling TFA" do
 
     click_on "Verify Code and Enable"
 
-    expect(current_path).to eq(user_path(@user))
-    expect(page).to have_text("Two Factor Authentication has been successfully enabled!")
+    expect(current_path).to eq(user_tfa_path(@user))
+    expect(page).to have_text("Two-Factor Authentication has been successfully enabled!")
+    expect(page).to have_text("Two-Factor Recovery Codes")
+    @user.tfa_recovery_codes.each do |code|
+      expect(page).to have_text(code)
+    end
   end
 
   it "does not enable TFA for the user if verification code is invalid" do
@@ -38,7 +42,7 @@ describe "Enabling TFA" do
 
     expect(current_path).to eq(user_path(@user))
 
-    click_on "Enable Two Factor Authentication"
+    click_on "Enable Two-Factor Authentication"
 
     expect(current_path).to eq(new_user_tfa_path(@user))
 
