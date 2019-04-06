@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <h4><%= pluralize(object.errors.count, "error") %> prohibited this form from being saved:</h4>
+    <h5>The information submitted was invalid, please resolve the following errors:</h5>
      <ul>
        <% object.errors.full_messages.each do |msg| %>
          <li><%= msg %></li>

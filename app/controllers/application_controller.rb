@@ -19,4 +19,23 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :current_user?
+
+  def validate_recaptcha
+    begin
+      recaptcha = Recaptcha.new(params[:gtoken] || params[:'g-recaptcha-response'],
+                                Rails.application.credentials.recaptcha[:site_key],
+                                Rails.application.credentials.recaptcha[:secret_key])
+      recaptcha.verify
+    rescue => e
+      input_errors = [ "Failed recaptcha! timeout-or-duplicate",
+                       "Failed recaptcha! missing-input-response",
+                       "Failed recaptcha! invalid-input-response"
+                       ]
+      if input_errors.include?(e.message)
+        return false
+      else
+        raise e.message
+      end
+    end
+  end
 end

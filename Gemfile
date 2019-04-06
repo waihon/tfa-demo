@@ -61,3 +61,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Bootstrap 4
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
+
+# Net/HTTP gems
+gem 'httparty', '0.15.5'
