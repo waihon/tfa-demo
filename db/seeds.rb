@@ -5,18 +5,21 @@
 #
 waihon = User.create!(
   name: 'Waihon',
+  username: 'waihon',
   email: 'waihon@example.com',
   password: 'secret'
 )
 
 mark = User.create!(
   name: 'Mark',
+  username: 'mark',
   email: 'mark@example.org',
-  password: 'extremesecret'
+  password: 'secret'
 )
 
 jenny = User.create!(
   name: 'Jenny',
+  username: 'jenny',
   email: 'jenny@example.net',
-  password: 'supersecret'
+  password: 'secret'
 )
