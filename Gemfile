@@ -34,8 +34,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
   gem 'rspec-rails'
-# Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.3', '< 1.4'
 end
 
 group :development do
@@ -55,9 +53,8 @@ group :test do
   # gem 'chromedriver-helper'
 end
 
-group :production do
-  gem 'pg'
-end
+# Use Postgres as the database for Active Record
+gem 'pg'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
