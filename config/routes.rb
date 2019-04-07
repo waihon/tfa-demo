@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users do
     resource :tfa, only: [:new, :create, :show]
     resource :tfa_session, only: [:new, :create]
+    resource :tfa_recovery, only: [:new, :create]
   end
 
   get '/signup' => "users#new"

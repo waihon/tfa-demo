@@ -30,8 +30,8 @@
         </div>
       </div>
       <ul>
-        <li>Account name: <b><%= current_user.email %></b></li>
-        <li>Key: <b><%= current_user.otp_secret_key %></b></li>
+        <li>Account name: <b><%= @user.email %></b></li>
+        <li>Key: <b><%= @user.otp_secret_key %></b></li>
       </ul>
       <div>Your app will then generate a 6-digit authentication code, which you use below.</div>
     </div>
@@ -60,7 +60,7 @@
 
 <script type="text/javascript">
   new QRCode(document.getElementById("qrcode"), {
-    text: "<%= current_user.provisioning_uri(nil, issuer: "TFA Demo").html_safe %>",
+    text: "<%= @user.provisioning_uri(nil, issuer: "TFA Demo").html_safe %>",
     width: 128,
     height: 128
   });

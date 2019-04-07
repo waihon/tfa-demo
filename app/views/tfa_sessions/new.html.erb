@@ -14,4 +14,15 @@
       </div>
     </fieldset>
   <% end %>
+  <div>
+    Open the two-factor authentication app on your device to view your authentication code
+    and verify your identify.
+  </div>
+  <br />
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <p class="card-text">Don't have your phone?</p>
+       <%= link_to "Enter a two-factor recovery code", new_user_tfa_recovery_path(@user) %>
+    </div>
+  </div>
 </div>

@@ -26,11 +26,8 @@ class User < ApplicationRecord
   end
 
   def update_otp_secret_key!
-    update_attribute(:otp_secret_key, ROTP::Base32.random_base32)
-  end
-
-  def generate_recovery_codes
-    generate_recovery_codes! if tfa_recovery_codes.blank?
+    self.otp_secret_key = ROTP::Base32.random_base32
+    save!
   end
 
   def prepare_tfa
@@ -38,21 +35,33 @@ class User < ApplicationRecord
   end
 
   def enable_tfa
-    generate_recovery_codes
-    update_attribute(:tfa_enabled, true)
+    self.tfa_recovery_codes = generate_recovery_codes
+    self.tfa_enabled = true
+    save!
   end
 
   def reset_tfa
-    update_attributes(otp_secret_key: nil, tfa_enabled: false, tfa_recovery_codes: nil)
+    self.otp_secret_key = nil
+    self.tfa_enabled = false
+    self.tfa_recovery_codes = nil
+    save!
+  end
+
+  def authenticate_recovery(recovery_code)
+    remaining_recovery_codes = tfa_recovery_codes.reject { |code| code == recovery_code }
+    return false if remaining_recovery_codes.length == tfa_recovery_codes.length
+
+    self.tfa_recovery_codes = remaining_recovery_codes
+    save!
+
+    return true
   end
 
   private
 
-  def generate_recovery_codes!
-    digits = 6
+  def generate_recovery_codes
     recovery_codes = 16.times.map do
       2.times.map { SecureRandom.hex(3) }.join('-')
     end
-    update_attribute(:tfa_recovery_codes, recovery_codes)
   end
 end

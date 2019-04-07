@@ -25,7 +25,7 @@ describe "Authenticating TFA" do
     expect(page).to have_text("Welcome back, #{@user.name}!")
   end
 
-  it "doesn't sign in the user if the authentication code is valid" do
+  it "doesn't sign in the user if the authentication code is invalid" do
     sign_in(@user)
 
     invalid_authentication_code = @user.otp_code.reverse
