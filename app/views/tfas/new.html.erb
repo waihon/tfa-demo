@@ -1,0 +1,67 @@
+<div class="container">
+
+  <h3>Two-Factor Authentication</h3>
+
+  <div>
+    <h5>STEP 1: Get the App</h5>
+    <div>Download and install the <b>Google Authenticator</b> app for your phone or tablet.</div>
+  </div>
+  <br/ >
+
+  <div>
+    <h5>STEP 2: Scan the Barcode</h5>
+    <div>
+      <div class="row">
+        <div class="col-7">
+          <div>Open the authenticator app and:</div>
+          <ul>
+            <li>Tap the <b>"+"</b> icon in the lower-right (Android) or upper-right (iOS) of the app</li>
+            <li>Tap <b>"Scan a barcode"</b></li>
+            <li>Scan the image to the right using your device's camera:</li>
+          </ul>
+        </div>
+        <div id="qrcode" class="col"></div>
+      </div>
+      <br />
+
+      <div class="row">
+        <div class="col-7">
+          If you have trouble scanning, tap the <b>"+"</b> icon, then tap <b>"Enter a provided key"</b> (Android) or <b>"Manual entry"</b> (iOS) and enter the following info:
+        </div>
+      </div>
+      <ul>
+        <li>Account name: <b><%= @user.email %></b></li>
+        <li>Key: <b><%= @user.otp_secret_key %></b></li>
+      </ul>
+      <div>Your app will then generate a 6-digit authentication code, which you use below.</div>
+    </div>
+  </div>
+  <br />
+
+  <div>
+    <h5>STEP 3: Enter Authentication Code</h5>
+    <div class="row">
+      <div class="col-7">
+        <%= form_tag(user_tfa_path(@user)) do %>
+          <fieldset>
+            <div class="form-group">
+              <%= label_tag :authentication_code, "Authentication Code", class: "required" %>
+              <%= text_field_tag :authentication_code, nil, size: 40, autofocus: true, required: true, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Verify Code and Enable", class: "btn btn-primary" %>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  new QRCode(document.getElementById("qrcode"), {
+    text: "<%= @user.provisioning_uri(nil, issuer: "TFA Demo").html_safe %>",
+    width: 128,
+    height: 128
+  });
+</script>

@@ -1,0 +1,22 @@
+<div class="container">
+  <h3>Two-Factor Recovery Codes</h3>
+
+  <div>
+    <p>
+      Recovery codes are used to access your account in the event you cannot
+      receive two-factor authentication codes.
+    </p>
+    <div class="alert alert-warning" role="alert">
+      Print or copy your recovery codes before you continue.
+    </div>
+    <ul>
+      <% @user.tfa_recovery_codes.each do |code| %>
+        <li><code><%= code %></code></li>
+      <% end %>
+    </ul>
+    <div class="alert alert-warning" role="alert">
+      Treat your recover codes with the same level of attention as you would
+      your password! We recoomend saving them with a password manager.
+    </div>
+  </div>
+</div>

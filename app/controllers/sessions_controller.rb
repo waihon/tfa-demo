@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
   def create
     if user = User.authenticate(params[:email_or_username], params[:password])
       if validate_recaptcha
-        session[:user_id] = user.id
-        flash[:notice] = "Welcome back, #{user.name}!"
-        redirect_to(session[:intended_url] || user)
-        session[:intended_url] = nil
+        unless user.tfa_enabled?
+          user_authenticated(user)
+        else
+          redirect_to new_user_tfa_session_path(user)
+        end
       else
         flash.now[:alert] = "Please complete the reCAPTCHA verification."
         render :new

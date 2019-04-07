@@ -1,0 +1,28 @@
+<div class="container">
+  <header>
+    <h3>Two-Factor Authentication<h3>
+  </header>
+
+  <%= form_tag(user_tfa_session_path(@user)) do %>
+    <fieldset>
+      <div class="form-group">
+        <%= label_tag :authentication_code, "Authentication Code", class: "required" %>
+        <%= text_field_tag :authentication_code, nil, size: 40, autofocus: true, required: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= submit_tag "Verify Code", class: "btn btn-primary" %>
+      </div>
+    </fieldset>
+  <% end %>
+  <div>
+    Open the two-factor authentication app on your device to view your authentication code
+    and verify your identify.
+  </div>
+  <br />
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <p class="card-text">Don't have your phone?</p>
+       <%= link_to "Enter a two-factor recovery code", new_user_tfa_recovery_path(@user) %>
+    </div>
+  </div>
+</div>
