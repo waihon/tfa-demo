@@ -33,20 +33,20 @@
         <li>Account name: <b><%= current_user.email %></b></li>
         <li>Key: <b><%= current_user.otp_secret_key %></b></li>
       </ul>
-      <div>Your app will then generate a 6-digit verification code, which you use below.</div>
+      <div>Your app will then generate a 6-digit authentication code, which you use below.</div>
     </div>
   </div>
   <br />
 
   <div>
-    <h5>STEP 3: Enter Verification Code</h5>
+    <h5>STEP 3: Enter Authentication Code</h5>
     <div class="row">
       <div class="col-7">
         <%= form_tag(user_tfa_path(@user)) do %>
           <fieldset>
             <div class="form-group">
-              <%= label_tag :verification_code, "Verification Code", class: "required" %>
-              <%= text_field_tag :verification_code, nil, size: 40, autofocus: true, required: true, class: "form-control" %>
+              <%= label_tag :authentication_code, "Authentication Code", class: "required" %>
+              <%= text_field_tag :authentication_code, nil, size: 40, autofocus: true, required: true, class: "form-control" %>
             </div>
             <div class="form-group">
               <%= submit_tag "Verify Code and Enable", class: "btn btn-primary" %>

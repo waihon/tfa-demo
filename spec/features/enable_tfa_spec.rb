@@ -6,7 +6,7 @@ describe "Enabling TFA" do
     @user.update_attribute(:tfa_enabled, false)
   end
 
-  it "enable TFA for the user if verification code is valid" do
+  it "enable TFA for the user if authentication code is valid" do
     sign_in(@user)
 
     expect(current_path).to eq(user_path(@user))
@@ -23,9 +23,9 @@ describe "Enabling TFA" do
     expect(page).to have_text(@user.email)
     expect(page).to have_text(@user.otp_secret_key)
 
-    expect(page).to have_text("STEP 3: Enter Verification Code")
-    valid_verification_code = @user.otp_code
-    fill_in "Verification Code", with: valid_verification_code
+    expect(page).to have_text("STEP 3: Enter Authentication Code")
+    valid_authentication_code = @user.otp_code
+    fill_in "Authentication Code", with: valid_authentication_code
 
     click_on "Verify Code and Enable"
 
@@ -37,7 +37,7 @@ describe "Enabling TFA" do
     end
   end
 
-  it "does not enable TFA for the user if verification code is invalid" do
+  it "does not enable TFA for the user if authentication code is invalid" do
     sign_in(@user)
 
     expect(current_path).to eq(user_path(@user))
@@ -46,12 +46,12 @@ describe "Enabling TFA" do
 
     expect(current_path).to eq(new_user_tfa_path(@user))
 
-    invalid_verification_code = @user.otp_code.reverse
-    fill_in "Verification Code", with: invalid_verification_code
+    invalid_authentication_code = @user.otp_code.reverse
+    fill_in "Authentication Code", with: invalid_authentication_code
 
     click_on "Verify Code and Enable"
 
     expect(current_path).to eq(user_tfa_path(@user))
-    expect(page).to have_text("Invalid verification code!")
+    expect(page).to have_text("Invalid authentication code!")
   end
 end
