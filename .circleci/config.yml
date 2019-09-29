@@ -55,6 +55,10 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
+      # Precompile assets for test environment before running CircleCI
+      - run: bundle exec rake webpacker:install
+      - run: NODE_ENV=test bundle exec rake webpacker:compile
+
       # run tests!
       - run:
           name: run tests
