@@ -23,3 +23,18 @@ jenny = User.create!(
   email: 'jenny@example.net',
   password: 'secret'
 )
+
+todo1 = Todo.create!(
+  title: "Study Stimulus JS handbook",
+  completed: true
+)
+
+todo2 = Todo.create!(
+  title: "Code Stimulus JS according to the handbook",
+  completed: false
+)
+
+todo3 = Todo.create!(
+  title: "Develop a Todo app using Rails and Stimulus JS",
+  completed: false
+)

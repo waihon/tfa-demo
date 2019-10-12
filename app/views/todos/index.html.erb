@@ -1,0 +1,11 @@
+<table>
+  <% @todos.each do |todo|  %>
+    <tr>
+      <td>
+        <input type="checkbox"
+          <% if todo.completed %> checked <% end %> >
+        <%= todo.title %>
+      </td>
+    </tr>
+  <% end %>
+</table>
