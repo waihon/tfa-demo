@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get "/signin" => "sessions#new"
 
   get '/todos' => "todos#index"
+  patch '/todos/:id' => "todos#update", as: "todo"
 end
