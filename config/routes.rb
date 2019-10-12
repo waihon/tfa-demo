@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get '/about' => "pages#about"
+  get '/stimulus' => "pages#stimulus"
 
   resources :users do
     resource :tfa, only: [:new, :create, :show]
