@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_one_time_password
+  has_many :todos
 
   serialize :tfa_recovery_codes, Array
 

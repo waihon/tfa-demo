@@ -23,3 +23,20 @@ jenny = User.create!(
   email: 'jenny@example.net',
   password: 'secret'
 )
+
+todos = waihon.todos
+
+todo1 = todos.create!(
+  title: "Study Stimulus JS Handbook",
+  completed: true
+)
+
+todo2 = todos.create!(
+  title: "Practise coding Stimulus JS by following the Handbook",
+  completed: false
+)
+
+todo3 = todos.create!(
+  title: "Develop a Todo web app using Rails and Stimulus JS",
+  completed: false
+)

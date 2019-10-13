@@ -1,0 +1,10 @@
+<tr data-controller="todo"
+    data-todo-update-url="<%= user_todo_path(current_user, todo) %>">
+  <td>
+    <input type="checkbox"
+           data-action="todo#toggle"
+           data-target="todo.completed"
+           <% if todo.completed %> checked <% end %> >
+    <%= todo.title %>
+  </td>
+</tr>
