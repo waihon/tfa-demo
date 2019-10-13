@@ -15,6 +15,11 @@ class TodosController < ApplicationController
     end
   end
 
+  def create
+    @todo = current_user.todos.create(todo_params)
+    render @todo
+  end
+
 private
 
   def todo_params
@@ -22,7 +27,10 @@ private
   end
 
   def require_correct_user
-    @user = User.find(params[:user_id])
+    # To handle POST '/todos'
+    return unless params[:user_id]
+
+    @user = User.find_by_id(params[:user_id])
     redirect_to root_url unless current_user?(@user)
   end
 end

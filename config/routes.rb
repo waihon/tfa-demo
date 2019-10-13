@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   resource :session
 
   get "/signin" => "sessions#new"
+
+  # To handle creation of a new todo directly on the index page
+  post "/todos" => "todos#create"
 end

@@ -1,3 +1,14 @@
-<table>
-  <%= render @todos %>
-</table>
+<section data-controller="todos">
+  <div class="form-group">
+    <table data-target="todos.todoList">
+      <%= render @todos %>
+    </table>
+  </div>
+
+  <%= form_with(model: Todo.new, data: { type: "html", action: "ajax:success->todos#onAddSuccess" }) do |f| %>
+    <div class="form-group">
+      <%= f.text_field :title, autofocus: true, size: 60, placeholder: "New todo...", data: { target: "todos.title" } %>
+      <%= f.submit "Add Todo", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</section>
