@@ -17,7 +17,12 @@ class TodosController < ApplicationController
 
   def create
     @todo = current_user.todos.create(todo_params)
-    render @todo
+
+    if @todo.errors.any?
+      render partial: "errors", todo: @todo, status: :bad_request
+    else
+      render @todo
+    end
   end
 
 private
