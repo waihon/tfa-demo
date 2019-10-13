@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resource :tfa, only: [:new, :create, :show]
     resource :tfa_session, only: [:new, :create]
     resource :tfa_recovery, only: [:new, :create]
+    resources :todos, only: [:index, :update]
   end
 
   get '/signup' => "users#new"
@@ -16,7 +17,4 @@ Rails.application.routes.draw do
   resource :session
 
   get "/signin" => "sessions#new"
-
-  get '/todos' => "todos#index"
-  patch '/todos/:id' => "todos#update", as: "todo"
 end

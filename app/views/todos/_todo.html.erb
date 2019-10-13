@@ -1,5 +1,5 @@
 <tr data-controller="todo"
-    data-todo-update-url="<%= todo_path(todo) %>">
+    data-todo-update-url="<%= user_todo_path(current_user, todo) %>">
   <td>
     <input type="checkbox"
            data-action="todo#toggle"
