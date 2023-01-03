@@ -66,7 +66,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 # Net/HTTP gems
-gem 'httparty', '0.15.5'
+gem 'httparty', '0.21.0'
 
 # Set and authenticate against one time passwords (Two-Factor Authentication)
 gem 'active_model_otp', :git => 'https://github.com/heapsource/active_model_otp.git'
